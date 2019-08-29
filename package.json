@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "import": "node scripts/import.js",
     "start": "node server/server.js",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "deploy": "git push heroku master"
   },
   "author": "Habbes",
   "license": "ISC",
