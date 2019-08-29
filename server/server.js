@@ -1,7 +1,9 @@
 const config = require('../config');
+const path = require('path');
 const mongodb = require('mongodb');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
@@ -16,8 +18,11 @@ async function getDb () {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+// app.use(express.static(path.join(__dirname, 'client')));
 
-app.all('/', (req, res) => {
+
+app.all('/status', (req, res) => {
     res.status(200).json({
         status: 'ok',
         uptime: process.uptime()
@@ -37,6 +42,7 @@ app.post('/query', async (req, res) => {
         });
     }
 });
+
 
 app.listen(config.PORT, () => {
     console.log(`App listening on port ${config.PORT}`);
