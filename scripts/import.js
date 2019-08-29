@@ -1,21 +1,35 @@
 const config = require('../config');
 const mongodb = require('mongodb');
+const UtmConverter = require('utm-latlng');
+const utmConverter = new UtmConverter();
 
 const rawData = require('../data/data.json');
 
+function processData(rawData) {
+    return rawData.map((row) => {
+        const latLng = utmConverter.convertUtmToLatLng(row.location_x, row.location_y, 36, 'S');
+        return {
+            ...row,
+            datetime: new Date(row.datetime),
+            geolocation: {
+                type: 'Point',
+                coordinates: [latLng.lng, latLng.lat]
+            }
+        };
+    });
+}
+
 async function importData () {
     const client = await mongodb.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Importing data...');
     const db = client.db();
-    // first clear all data
+    console.log('Clearing existing data...');
     await db.createCollection(config.COLLECTION);
     await db.dropCollection(config.COLLECTION);
-    // pre-process data
-    const data = rawData.map((row) => ({
-        ...row,
-        datetime: new Date(row.datetime)
-    }));
-    // import
+
+    console.log('Processing data...');
+    const data = processData(rawData);
+    
+    console.log('Importing data...');
     await db.collection(config.COLLECTION).insertMany(data);
     console.log('Data import complete.');
     process.exit(0);
