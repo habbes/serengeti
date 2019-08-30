@@ -38,4 +38,16 @@ div {
 
 #main {
   flex: 1;
+  display: flex;
+}
+
+#map {
+  flex: 1;
+  margin-bottom: 30px;
+  /* width: 80%; */
+  height: 500px;
+}
+
+#chart {
+  flex: 1;
 }

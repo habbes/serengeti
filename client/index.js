@@ -43,6 +43,11 @@ function init() {
             bundle.minTimestamp, 0.5,
             bundle.maxTimestamp, 1
           ],
+          'circle-radius': [
+            'interpolate', ['linear'], ['zoom'],
+            1, 1,
+            12, 10
+          ]
       }
     });
 
