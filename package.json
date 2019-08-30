@@ -8,7 +8,11 @@
     "import": "node scripts/import.js",
     "start": "node server/server.js",
     "dev": "nodemon .",
-    "deploy": "git push heroku master"
+    "client-dev": "parcel client/index.html",
+    "client-build": "NODE_ENV=production && parcel build client/index.html",
+    "server-deploy": "git push heroku master",
+    "client-deploy": "firebase deploy",
+    "deploy": "npm run server-deploy && npm run client-build && npm run client-deploy"
   },
   "author": "Habbes",
   "license": "ISC",

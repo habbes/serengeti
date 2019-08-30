@@ -23,12 +23,8 @@ div {
 
 #filtersWrapper {
   width: 300px;
-  background-color: black;
-  height: 50px;
 }
 
 #main {
   flex: 1;
-  background-color: red;
-  height: 50px;
 }
