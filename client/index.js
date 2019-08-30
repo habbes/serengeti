@@ -11,7 +11,13 @@ const map = new mapboxgl.Map({
 map.addControl(new mapboxgl.NavigationControl());
 
 function init() {
-  runQuery([{ $unwind: '$species' }]).then(data => {
+  const initialQuery = [
+    { $match: {
+      timestamp: { $gte: new Date('2010-08-23').getTime(), $lte: new Date('2010-09-23').getTime() } }
+    },
+    { $unwind: '$species' }
+  ];
+  runQuery(initialQuery).then(data => {
     const bundle = processData(data);
 
     map.addSource('animals', {
