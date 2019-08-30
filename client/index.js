@@ -11,15 +11,8 @@ const map = new mapboxgl.Map({
 map.addControl(new mapboxgl.NavigationControl());
 
 function init() {
-  runQuery([
-    { $match: { 'species.name': 'zebra' } },
-    { $limit: 100 }
-  ]).then(data => {
-    console.log('ran query', data);
-    // const geoData = toGeoJSON(data);
+  runQuery([]).then(data => {
     const bundle = processData(data);
-    // map.setCenter(geoData[0].geometry.coordinates);
-    console.log('new center', bundle);
 
     map.addSource('animals', {
       type: 'geojson',
@@ -39,15 +32,6 @@ function init() {
       type: 'circle',
       source: 'animals',
       paint: {
-        // 'circle-color': {
-        //   property: 'count',
-        //     type: 'interval',
-        //     stops: [
-        //       [0, '#41A337'],
-        //       [100, '#2D7026'],
-        //       [750, '#0B5703'],
-        //     ]
-        //   },
           'circle-color': [
             'interpolate', ['linear'], ['get', 'timestamp'],
             bundle.minTimestamp, '#00aa00',
@@ -59,15 +43,6 @@ function init() {
             bundle.minTimestamp, 0.5,
             bundle.maxTimestamp, 1
           ],
-        //   'circle-radius': {
-        //     property: 'count',
-        //     type: 'interval',
-        //     stops: [
-        //       [0, 20],
-        //       [100, 30],
-        //       [750, 40]
-        //     ]
-        // }
       }
     });
 
