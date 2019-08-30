@@ -88,3 +88,28 @@ export function updateMap(map, data) {
     [bundle.maxLng, bundle.maxLat]
   ]);
 }
+
+export function createChart(data) {
+  const vlSpec = {
+    $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+    data: {
+      values: data
+    },
+    width: 650,
+    height: 500,
+    mark: 'bar',
+    encoding: {
+      x: {field: 'species.name', type: 'nominal', axis: { title: 'Species' } },
+      y: {
+        aggregate: 'count',
+        field: '*',
+        type: 'quantitative',
+        axis: {
+          title: 'Number of sightings'
+        }
+      }
+    }
+  };
+
+  vegaEmbed('#chart', vlSpec);
+}

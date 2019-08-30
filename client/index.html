@@ -5,6 +5,9 @@
   <link rel="stylesheet" href="style.css">
   <script src='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.4.0/build/vega.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.0-beta.0/build/vega-lite.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.2.1/build/vega-embed.js"></script>
 </head>
 <body>
   <header id="header">
@@ -30,7 +33,9 @@
       </div>
     </section>
     <div id="main">
-      <div id='map' style='width: 700px; height: 500px;'></div>
+      <div id='map' style='width: 80%; height: 500px;'></div>
+
+      <div id="chart"></div>
     </div>
   </div>
   

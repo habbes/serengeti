@@ -1,4 +1,4 @@
-import { runQuery, processData, updateMap } from './util';
+import { runQuery, processData, updateMap, createChart } from './util';
 import { SPECIES } from './species';
 
 export function updateFilters({ minTimestamp, maxTimestamp }) {
@@ -68,7 +68,7 @@ export function generateQuery () {
   if (species.length) {
     query['species.name'] = { $in: species };
   }
-  return [ { $match: query } ];
+  return [ { $match: query }, { $unwind: '$species' } ];
 }
 
 export function queryAndUpdate(map) {
@@ -76,6 +76,7 @@ export function queryAndUpdate(map) {
   runQuery(query).then((data) => {
     console.log('SOURCE', data);
     updateMap(map, data);
+    createChart(data);
     console.log('map updated');
   });
 }
