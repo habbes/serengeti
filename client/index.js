@@ -40,13 +40,13 @@ function init() {
       paint: {
           'circle-color': [
             'interpolate', ['linear'], ['get', 'timestamp'],
-            bundle.minTimestamp, '#00aa00',
+            bundle.minTimestamp, '#005500',
             bundle.maxTimestamp, '#aaffaa'
           ],
           // 'circle-color': '#aaffaa',
           'circle-opacity': [
             'interpolate', ['linear'], ['get', 'timestamp'],
-            bundle.minTimestamp, 0.5,
+            bundle.minTimestamp, 0.2,
             bundle.maxTimestamp, 1
           ],
           'circle-radius': [
