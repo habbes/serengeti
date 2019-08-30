@@ -1,4 +1,5 @@
 import { runQuery, processData, updateMap } from './util';
+import { SPECIES } from './species';
 
 export function updateFilters({ minTimestamp, maxTimestamp }) {
   const minDate = new Date(minTimestamp).toISOString().split('T')[0];
@@ -9,6 +10,12 @@ export function updateFilters({ minTimestamp, maxTimestamp }) {
 
   fromDate.value = minDate;
   toDate.value = maxDate;
+}
+
+export function createSpeciesFilters (){
+  SPECIES.forEach(() => {
+    
+  });
 }
 
 export function registerFilters (map) {
