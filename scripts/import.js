@@ -8,9 +8,11 @@ const rawData = require('../data/data.json');
 function processData(rawData) {
     return rawData.map((row) => {
         const latLng = utmConverter.convertUtmToLatLng(row.location_x, row.location_y, 36, 'S');
+        const date = new Date(row.datetime);
         return {
             ...row,
-            datetime: new Date(row.datetime),
+            datetime: date,
+            timestamp: date.getTime(),
             geolocation: {
                 type: 'Point',
                 coordinates: [latLng.lng, latLng.lat]
