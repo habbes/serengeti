@@ -11,7 +11,19 @@
     <div class="page-title">Serengeti Explorer</div>
   </header>
   <div id="mainContainer">
-    <section id="filtersWrapper"></section>
+    <section id="filtersWrapper">
+      <div class="filter-wrapper">
+        <div class="filter-title">Date</div>
+        <div>
+          <label class="filter-label">From:</label>
+          <input class="filter-input" id="dateFrom" type="date" data-field="dateFrom">
+        </div>
+        <div>
+          <label class="filter-label">To:</label>
+          <input class="filter-input" id="dateTo" type="date" data-field="dateTo">
+        </div> 
+      </div>
+    </section>
     <div id="main">
       <div id='map' style='width: 700px; height: 500px;'></div>
     </div>

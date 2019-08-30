@@ -72,3 +72,19 @@ export function processData(data) {
     maxTimestamp
   };
 }
+
+export function updateMap(map, data) {
+  const bundle = processData(data);
+    // map.setCenter(geoData[0].geometry.coordinates);
+  console.log('new bundle', bundle);
+
+  map.getSource('animals').setData({
+    'type': 'FeatureCollection',
+    features: bundle.geoData
+  });
+    console.log('added source', bundle.geoData);
+  map.fitBounds([
+    [bundle.minLng, bundle.minLat],
+    [bundle.maxLng, bundle.maxLat]
+  ]);
+}

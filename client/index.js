@@ -1,4 +1,5 @@
-import { toGeoJSON, runQuery, processData } from './util';
+import { runQuery, processData } from './util';
+import { updateFilters, registerFilters } from './filters';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGFiYmVzIiwiYSI6ImNqN3ZsdW5xNjVhNDMzM21sY2Y4Y3d3OHQifQ.5Z4dZGEYlOH2-ToSNskghg';
 const map = new mapboxgl.Map({
@@ -69,7 +70,11 @@ function init() {
         // }
       }
     });
+
+    updateFilters(bundle);
+    registerFilters(map);
   });  
 }
 
 map.on('load', init);
+
